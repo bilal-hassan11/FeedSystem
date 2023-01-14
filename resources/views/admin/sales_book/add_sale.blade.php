@@ -2,8 +2,9 @@
 
 @extends('layouts.admin')
 @section('content')
+
 <div class="main-content"> 
-       <div class="row">
+       {{-- <div class="row">
          <div class="col-sm-12">
            <div class="card">
              <div class="card-header">
@@ -12,14 +13,14 @@
 
              
             <!-- Default box -->
-		  <div class="box">
+		  <div class="box"> --}}
 			
 			<div class="box-body">
       @if(isset($is_update))
-				<a class="popup-with-form btn btn-primary" href="#test-form">Add Sale</a>
-@endif
+				<a class="popup-with-form btn btn-primary d-none" href="#test-form" id="popup_button">Add Sale</a>
+      @endif
 				<!-- form itself -->
-				<form id="test-form"  role="form" action="{{ route('admin.sales.store') }}" method="POST" class="mfp-hide white-popup-block">
+				<form id="test-form"  role="form" action="{{ route('admin.sales.store') }}" method="POST" class="ajaxForm mfp-hide white-popup-block">
           @csrf
           <h4>Sales Form</h4>
 					<fieldset style="border:0;">
@@ -159,7 +160,8 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <input type="hidden" name="sale_id" value="{{ @$edit_sale[0]->hashid }}">
-                  <button type="submit" name="save_sale" class="btn btn-success "><i class="fa fa-check"></i> save</button>
+                  <input type="submit" class="btn btn-success ">
+                  {{-- <button type="submit" name="save_sale" class="btn btn-success "><i class="fa fa-check"></i> save</button> --}}
                 </div>
               </div>
             </div>
@@ -216,7 +218,7 @@
                   <td>{{ @$outward->net_value }}</td>
                   
                   <td width="120">
-                    <a href="{{route('admin.sales.edit', $outward->hashid)}}" class="popup-with-form btn btn-primary btn-xs waves-effect waves-light"  >
+                    <a href="{{route('admin.sales.edit', $outward->hashid)}}" class="btn btn-primary btn-xs waves-effect waves-light">
                         <i class="fas fa-edit"></i>
                     </a>
                     <button type="button" onclick="ajaxRequest(this)" data-url=""  class="btn btn-danger btn-xs waves-effect waves-light">
@@ -341,7 +343,10 @@ $(document).ready(function() {
     for (let i = 0; i <= loop_time.length; i++) {
       console.log(i);
     }
-      });
+    @if(isset($is_update))
+      $('#popup_button').click();
+    @endif
+  });
 
   $('#account_name').change(function(){
     var id = $(this).val();

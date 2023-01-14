@@ -618,9 +618,12 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 	<script src="{{ asset('new_assets') }}/js/pages/validation.js"></script>
     <script src="{{ asset('new_assets') }}/js/pages/form-validation.js"></script>
-<script src="{{ asset('new_assets') }}/js/pages/advanced-form-element.js"></script>
-
-<script src="{{ asset('admin_assets') }}/js/bundled.min.js"></script>
+	<script src="{{ asset('new_assets') }}/js/pages/advanced-form-element.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.2/parsley.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.min.js"></script>
+{{-- <script src="{{ asset('admin_assets') }}/js/bundled.min.js"></script> --}}
 <script src="{{ asset('admin_assets') }}/js/custom.js"></script>
     
 <script>
