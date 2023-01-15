@@ -24,21 +24,25 @@ class SaleRequest extends FormRequest
     public function rules()
     {
         return [
-            'sale_date'       => ['required', 'date'],
-            'gp_no'           => ['required', 'string', 'max:100'],
-            'remarks'         => ['nullable', 'string'],
+            'sale_date'         => ['required', 'date'],
+            'gp_no'             => ['required', 'string', 'max:100'],
+            'remarks'           => ['nullable', 'string'],
             'account_name'      => ['required'],
-            'sub_dealer_name' => ['required', 'string', 'max:250'],
-            'item_id'         => ['required'],
-            'bags'            => ['required', 'integer'],
-            'rate'            => ['required', 'integer'],
-            'bags_value'      => ['required', 'integer'],
-            'commission'      => ['required', 'integer'],
-            'discount'        => ['required', 'integer'],
-            'fare_value'      => ['required', 'integer'],
-            'net_value'       => ['required', 'integer'],
-            'vehicle_no'      => ['required'],
-            'fare_status'     => ['required', 'in:0,1']
+            'sub_dealer_name'   => ['required', 'string', 'max:250'],
+            'item_id'           => ['array'],
+            'item_id.*'         => ['required'],
+            'bags'              => ['array'],
+            'bags.*'            => ['required', 'integer'],
+            'rate'              =>['array'],
+            'rate.*'            => ['required', 'integer'],
+            'bags_value'        => ['required', 'integer'],
+            'commission'        => ['required', 'integer'],
+            'discount'          => ['required', 'integer'],
+            'fare_value'        => ['required', 'integer'],
+            'net_value'         => ['required', 'integer'],
+            'vehicle_no'        => ['required'],
+            'fare_status'       => ['required', 'in:0,1'],
+            'sale_id'           => ['required'],
         ];
     }
 }

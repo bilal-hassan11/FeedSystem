@@ -20,7 +20,10 @@ class Outward extends Model
         return $this->belongsTo(Account::class, 'account_id', 'id');
     }
 
-    public function outward_detail(){
-        return $this->belongsTo(OutwardDetail::class, 'id', 'outward_id');
+    // public function outward_detail(){
+    //     return $this->belongsTo(OutwardDetail::class, 'id', 'outward_id');
+    // }
+    public function outardDetails(){
+        return $this->hasMany(OutwardDetail::class, 'outward_id', 'id');
     }
 }
