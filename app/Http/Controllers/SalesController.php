@@ -109,4 +109,43 @@ class SalesController extends Controller
             'account'   => $account
         ]);
     }
+
+    public function migrateToSale($id){
+        $outward = Outward::with(['outardDetails', 'account', 'outardDetails.item'])->findOrFail(hashids_decode($id));
+        // dd($outward);
+        $net_value  = 0;
+        $discount   = 0;
+        $commission = 0;
+
+        foreach($outward->outardDetails AS $detail){
+            $net_value += $detail->item->price * $detail->quantity;
+        }
+
+        $comimission = ($outward->account->commission * $net_value)/100;
+        $discount    = ($outward->account->discount * $net_value)/100;
+        $total       = ($net_value - ($discount+$comimission))-$outward->fare;
+
+        $sale = new SaleBook();
+        $sale->date            = $outward->date;
+        $sale->gp_no           = $outward->gp_no;
+        $sale->item_id         = $outward->id;//item id is outward id
+        $sale->account_id      = $outward->account_id;
+        $sale->sub_dealer_name = $outward->sub_dealer_name;
+        $sale->vehicle_no      = $outward->vehicle_no;
+        $sale->bag_rate        = $outward->bags_value;
+        $sale->no_of_bags      = $outward->no_of_begs;
+        $sale->commission      = $outward->account->commission;
+        $sale->discount        = $outward->account->discount;
+        $sale->fare            = $outward->fare;
+        $sale->net_ammount     = $total;
+        $sale->remarks         = $outward->remarks;
+        $sale->bilty_no        = $outward->bilty_no;
+        // $sale->fare_status     = $req->fare_status;
+        $sale->save();
+
+        return response()->json([
+            'success'   => 'Row added to sales successfully',
+            'reload'    => true,
+        ]);
+    }
 }

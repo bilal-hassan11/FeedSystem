@@ -147,6 +147,7 @@ Route::middleware('auth:admin')->prefix('web_admin')->name('admin.')->group(func
         Route::get('/edit/{id}', 'edit')->name('edit');
         Route::get('/delete/{id}', 'delete')->name('delete');
         Route::get('/account/{id}', 'accountDetails')->name('account_details');
+        Route::get('/migrateToSale/{id}', 'migrateToSale')->name('migrate_to_sale');
     });
 
     //Cash Book routes

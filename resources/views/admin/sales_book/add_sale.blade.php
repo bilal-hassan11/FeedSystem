@@ -100,7 +100,7 @@
               @php
                 $commission = ($sale_amount * $edit_sale->account->commission)/100;
                 $discount   = ($sale_amount * $edit_sale->account->discount)/100;
-                $net_value  = ($sale_amount - ($commission - $discount))-$edit_sale->fare;
+                $net_value  = ($sale_amount - ($commission + $discount))-$edit_sale->fare;
               @endphp
             <div class="row">
                 <div class="col-md-4">
@@ -222,7 +222,7 @@
                     <a href="{{route('admin.sales.edit', $outward->hashid)}}" class="btn btn-primary btn-xs waves-effect waves-light">
                         <i class="fas fa-edit"></i>
                     </a>
-                    <button type="button" onclick="ajaxRequest(this)" data-url=""  class="btn btn-danger btn-xs waves-effect waves-light">
+                    <button type="button" onclick="ajaxRequest(this)" data-url="{{ route('admin.sales.migrate_to_sale', ['id'=>$outward->hashid]) }}"  class="btn btn-danger btn-xs waves-effect waves-light">
                     <i class="fa-sharp fa-solid fa-plus"></i> &nbsp Post
                     </button>
                   </td>
