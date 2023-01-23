@@ -198,7 +198,7 @@
             <td>{{ $inward->gp_no }}</td>
             <td>{{ $inward->remarks }}</td>
             <td width="120">
-                    <a href="{{route('admin.purchases.edit', $inward->hashid)}}" class="popup-with-form btn btn-primary btn-xs waves-effect waves-light"  >
+                    <a href="{{route('admin.purchases.edit', $inward->hashid)}}" class="btn btn-primary btn-xs waves-effect waves-light"  >
                         <i class="fas fa-edit"></i>
                     </a>
                     <button type="button" onclick="ajaxRequest(this)" data-url=""  class="btn btn-danger btn-xs waves-effect waves-light">
