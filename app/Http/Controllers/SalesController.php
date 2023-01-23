@@ -19,10 +19,9 @@ class SalesController extends Controller
             'accounts'  => Account::latest()->get(),
             'items'     => Item::latest()->get(),
             'sales'     => SaleBook::with(['item', 'account'])->latest()->get(),
-            'outwards'  => Outward::with(['item', 'account'])->latest()->get(),
-            
-            
+            'outwards'  => Outward::with(['outardDetails.item', 'account'])->latest()->get(),  
         );
+        // dd($data['outwards'][0]->);
         return view('admin.sales_book.add_sale')->with($data);
     }
 

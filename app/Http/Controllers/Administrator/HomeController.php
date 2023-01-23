@@ -15,7 +15,7 @@ class HomeController extends AdminController
 {
     public function index()
     {   
-
+        
         $sale = SaleBook::select(DB::raw("COUNT(*) as count, Month(date) as month, SUM(no_of_bags) as bag"))
                 ->whereYear('date', date('Y'))
                 ->groupBy(DB::raw("Month(date)"))

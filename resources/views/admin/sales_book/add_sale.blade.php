@@ -208,11 +208,10 @@
                   <td>{{ $outward->gp_no }}</td>
                   <td>{{ @$outward->account->name }}</td>
                   <td>{{ $outward->sub_dealer_name }}</td>
-                  <td>{{ @$outward->item->name }}</td>
-                  <td>{{ $outward->no_of_bags }}</td>
+                  <td>{{ @implode(" ", $outward->outardDetails->pluck('item')->pluck('name')->toArray()) }}</td>
+                  <td>{!! @implode("<br />", $outward->outardDetails->pluck('quantity')->toArray()) !!}</td>
                   <td>{{ $outward->rate }}</td>
                   <td>{{ $outward->sale_value }}</td>
-
                   <td>{{ $outward->fare }}</td>
                   <td>{{ @$outward->account->discount }}</td>
                   <td>{{ @$outward->account->commission }}</td>

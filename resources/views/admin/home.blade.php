@@ -170,7 +170,7 @@
                                         <td >{{ $loop->iteration }}</td>
                                         <td >{{ date('d-m-Y', strtotime($s->date)) }}</td>
                                         <td ><span class="badge bg-info">{{ $s->account->name }}</span></td>
-                                        <td >{{ $s->item->name }}</td>
+                                        <td >{{ @$s->item->name }}</td>
                                         <td ><span class="badge bg-danger">{{ $s->no_of_bags }}</span></td>
                                         <td >{{ $s->fare }}</td>
                                         
