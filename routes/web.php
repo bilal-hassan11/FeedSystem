@@ -164,6 +164,7 @@ Route::middleware('auth:admin')->prefix('web_admin')->name('admin.')->group(func
         Route::post('/store', 'store')->name('store');
         Route::get('/edit/{id}', 'edit')->name('edit');
         Route::get('/delete/{id}', 'delete')->name('delete');
+        Route::get('/migrateToPurchase/{id}', 'migrateToPurchase')->name('migrate_to_purchase');
     });
     //report routes
     Route::controller(ReportController::class)->prefix('report')->name('reports.')->group(function(){

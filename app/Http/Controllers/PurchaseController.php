@@ -96,4 +96,29 @@ class PurchaseController extends Controller
             'reload'    => true
         ]);
     }
+
+    public function migrateToPurchase($id){
+        $inward   = Inward::findOrFail(hashids_decode($id));
+        $purchase = new PurchaseBook;
+        $purchase->date              = $inward->date;
+        $purchase->vehicle_no        = $inward->vehicle_no;
+        $purchase->bilty_no          = $inward->bilty_no;
+        $purchase->pro_inv_no        = 0;
+        $purchase->account_id        = $inward->account_id;
+        $purchase->item_id           = $inward->id;
+        $purchase->company_weight    = $inward->company_weight;
+        $purchase->party_weight      = $inward->party_weight;
+        $purchase->weight_difference = $inward->weight_difference;
+        $purchase->posted_weight     = $inward->posted_weight;
+        $purchase->bag_rate          = $inward->rate;
+        $purchase->fare              = $inward->fare;
+        $purchase->net_ammount       = $inward->net_ammount;
+        $purchase->remarks           = $inward->remarks;
+        $purchase->save();
+
+        return response()->json([
+            'success'   => 'Inward data migrated to purchase book successfully',
+            'reload'    => true
+        ]);
+    }
 }

@@ -201,7 +201,7 @@
                     <a href="{{route('admin.purchases.edit', $inward->hashid)}}" class="btn btn-primary btn-xs waves-effect waves-light"  >
                         <i class="fas fa-edit"></i>
                     </a>
-                    <button type="button" onclick="ajaxRequest(this)" data-url=""  class="btn btn-danger btn-xs waves-effect waves-light">
+                    <button type="button" onclick="ajaxRequest(this)" data-url="{{ route('admin.purchases.migrate_to_purchase', ['id'=>$inward->hashid]) }}"  class="btn btn-danger btn-xs waves-effect waves-light">
                     <i class="fa-sharp fa-solid fa-plus"></i> &nbsp Post
                     </button>
                   </td>
