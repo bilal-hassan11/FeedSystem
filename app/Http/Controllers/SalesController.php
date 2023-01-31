@@ -147,4 +147,51 @@ class SalesController extends Controller
             'reload'    => true,
         ]);
     }
+
+    public function allSales(){
+        $data = array(
+            'title' => 'All sales',
+            'sales'     => SaleBook::with(['outwardDetail.item'])->latest()->get(),
+        );
+        // dd($data['sales'][0]['outwardDetail']);
+        return view('admin.sales_book.all_sales')->with($data);
+    }
+
+    public function editSale($id){
+        $data = array(
+            'title'     => 'Edit sale',
+            'sales'     => SaleBook::with(['outwardDetail.item'])->latest()->get(),
+            'edit_sale' => SaleBook::findOrfail(hashids_decode($id)),
+            'accounts'  => Account::latest()->get(),
+            'is_update' => true
+        );
+        return view('admin.sales_book.all_sales')->with($data);
+    }
+
+    public function updateSale(Request $req){
+        
+        $sale = SaleBook::findOrFail(hashids_decode($req->sale_book_id));
+        $sale->date             = $req->date;
+        $sale->gp_no            = $req->gp_no;
+        $sale->vehicle_no       = $req->vehicle_no;
+        $sale->account_id       = hashids_decode($req->account_id);
+        $sale->sub_dealer_name  = $req->sub_dealer_name;
+        $sale->no_of_bags       = $req->no_of_bags;
+        $sale->bag_rate         = $req->bag_rate;
+        $sale->fare             = $req->fare;
+        $sale->save();
+
+        return response()->json([
+            'success'   => 'Sale book updated successfully',
+            'redirect'  => route('admin.sales.all_sales')
+        ]);
+    }
+
+    public function deleteSale($id){
+        SaleBook::destroy(hashids_decode($id));
+        return response()->json([
+            'success'   => 'Sale deleted successfully',
+            'reload'    => true
+        ]);
+    }
 }

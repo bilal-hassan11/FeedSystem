@@ -148,6 +148,10 @@ Route::middleware('auth:admin')->prefix('web_admin')->name('admin.')->group(func
         Route::get('/delete/{id}', 'delete')->name('delete');
         Route::get('/account/{id}', 'accountDetails')->name('account_details');
         Route::get('/migrateToSale/{id}', 'migrateToSale')->name('migrate_to_sale');
+        Route::get('/all-sales', 'allSales')->name('all_sales');
+        Route::get('/edit_sale/{id}', 'editSale')->name('edit_sale');
+        Route::post('/update-sale', 'updateSale')->name('update_sale');
+        Route::get('/delete_sale/{id}', 'deleteSale')->name('delete_sale');
     });
 
     //Cash Book routes

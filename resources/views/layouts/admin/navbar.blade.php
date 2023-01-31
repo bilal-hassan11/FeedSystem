@@ -37,7 +37,13 @@
 		<li>
 			<a href="{{route('admin.sales.index')}}">
 				<i data-feather="home"></i>
-				<span> Sales BooK </span>
+				<span> Sales Book </span>
+			</a>
+		</li>
+		<li>
+			<a href="{{route('admin.sales.all_sales')}}">
+				<i data-feather="home"></i>
+				<span> All Sales </span>
 			</a>
 		</li>
 		<li><a href="#"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Reports</a>
