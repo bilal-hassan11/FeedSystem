@@ -169,6 +169,9 @@ Route::middleware('auth:admin')->prefix('web_admin')->name('admin.')->group(func
         Route::get('/edit/{id}', 'edit')->name('edit');
         Route::get('/delete/{id}', 'delete')->name('delete');
         Route::get('/migrateToPurchase/{id}', 'migrateToPurchase')->name('migrate_to_purchase');
+        Route::get('/all-purchase', 'allPurchase')->name('all_purchase');
+        Route::get('/edit-purchase/{id}', 'editPurchase')->name('edit_purchase');
+        Route::post('/update-purchase', 'updatePurchase')->name('update_purchase');
     });
     //report routes
     Route::controller(ReportController::class)->prefix('report')->name('reports.')->group(function(){

@@ -121,4 +121,43 @@ class PurchaseController extends Controller
             'reload'    => true
         ]);
     }
+
+    public function allPurchase(){
+        $data = array(
+            'title' => 'All purchase',
+            'purchases'  => PurchaseBook::with(['inward.item'])->latest()->get(),
+        );
+        // dd($data['purchases'][0]);
+        return view('admin.purchase_book.all_purchase')->with($data);
+    }
+
+    public function editPurchase($id){
+        $data = array(
+            'title'         => 'Edit purchase',
+            'purchases'     => PurchaseBook::with(['inward.item'])->latest()->get(),
+            'edit_purchase' => PurchaseBook::findOrFail(hashids_decode($id)),
+            'accounts'      => Account::latest()->get(),
+            'is_update'     => true  
+        );
+        return view('admin.purchase_book.all_purchase')->with($data);
+    }
+
+    public function updatePurchase(Request $req){
+        
+        $sale = PurchaseBook::findOrFail(hashids_decode($req->purchase_book_id));
+        $sale->date             = $req->date;
+        $sale->pro_inv_no       = $req->pro_inv_no;
+        $sale->vehicle_no       = $req->vehicle_no;
+        $sale->account_id       = hashids_decode($req->account_id);
+        // $sale->sub_dealer_name  = $req->sub_dealer_name;
+        $sale->no_of_bags       = $req->no_of_bags;
+        $sale->bag_rate         = $req->bag_rate;
+        $sale->fare             = $req->fare;
+        $sale->save();
+
+        return response()->json([
+            'success'   => 'purchase book updated successfully',
+            'redirect'  => route('admin.sales.all_sales')
+        ]);
+    }
 }

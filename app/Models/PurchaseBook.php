@@ -19,4 +19,8 @@ class PurchaseBook extends Model
     public function account(){
         return $this->belongsTo(Account::class, 'account_id', 'id');
     }
+
+    public function inward(){
+        return $this->belongsTo(Inward::class, 'item_id', 'id');
+    }
 }

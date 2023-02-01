@@ -67,6 +67,12 @@
 			
 		  </ul>		  
 		</li>
+		<li>
+			<a href="{{route('admin.purchases.all_purchase')}}">
+				<i data-feather="home"></i>
+				<span> All Purchase </span>
+			</a>
+		</li>
 		<li><a href="#"><i data-feather="lock"></i>Staff &amp; Permission</a>
 		  <ul>
 			<li><a href="{{route('admin.staffs.all')}}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Staff</a>
